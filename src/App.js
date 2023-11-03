@@ -1,35 +1,32 @@
 import './App.css';
-import Airlines from './componets/Airlines';
-import axios from 'axios';
-import FlightsReviewer from './componets/Airlines';
-import { useState ,useEffect } from 'react';
+import Airlines from './componets/Airlines/Airlines';
+import Airline from './componets/Airline/Airline';
 import { Route, Routes } from 'react-router-dom';
-import Airline from './componets/Airline';
 
-const API_URL = "http://localhost:3000/api/v1/airlines.json"
+// const API_URL = "http://localhost:3000/api/v1/airlines.json"
 
-function getAPIData() {
-  return axios.get(API_URL).then((response) => response.data)
-}
+// function getAPIData() {
+//   return axios.get(API_URL).then((response) => response.data)
+// }
 
 function App() {
-  const [flights, setFlights] = useState([]);
+  // const [flights, setFlights] = useState([]);
 
-  useEffect(()=> {
-    let mounted = true;
-    getAPIData().then((items) => {
-      if (mounted) {
-        setFlights(items);
-      }
-    });
-    return () => (mounted = false);
-  }, []);
+  // useEffect(()=> {
+  //   let mounted = true;
+  //   getAPIData().then((items) => {
+  //     if (mounted) {
+  //       setFlights(items);
+  //     }
+  //   });
+  //   return () => (mounted = false);
+  // }, []);
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Airlines flights={flights}/>}/>
-        <Route path="/airlines/:slug" element={<Airline flights={flights}/>}/>
+        <Route path="/" element={<Airlines />}/>
+        <Route path="/airlines/:slug" element={<Airline />}/>
       </Routes>
     </div>
   );
