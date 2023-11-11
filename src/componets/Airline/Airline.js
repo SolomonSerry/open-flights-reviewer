@@ -5,6 +5,7 @@ import Header from './Header';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import ReviewForm from './ReviewForm';
+import Reviews from './Reviews';
 
 const Wrapper = styled.div`
     margin-left: auto;
@@ -72,7 +73,19 @@ function Airline() {
     setReview({...review, score})
    }
 
-
+   let reviews
+   if (loaded && airline.included) {
+       reviews = airline.included.map( (item, index) => {
+        return (
+            <Reviews 
+                key={index}
+                title={item.attributes.title}
+                description={item.attributes.description}
+                score={item.attributes.score}
+            />
+        )
+       })
+   }
 
 
   return (
@@ -86,7 +99,7 @@ function Airline() {
                             attributes={airline.data.attributes}
                             reviews={airline.included}
                         />
-                        <div className="reveiws"></div> 
+                        {reviews}
                     </Main>   
                 </Column>
                 <Column>
